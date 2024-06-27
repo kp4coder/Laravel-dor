@@ -1,0 +1,378 @@
+/*-------------------------------- Comman Start css */
+* {
+	margin: 0;
+}
+
+html,
+body {
+	height: 100%;
+	margin: 0;
+}
+
+body {
+	font-family: 'Nunito Sans', sans-serif;
+	/* pl change the font you want to use */
+	background-color: var(--white-color);
+	color: var(--black-color);
+	display: flex;
+	flex-direction: column;
+}
+
+p {
+	font-size: 16px;
+	color: var(--text-color);
+	line-height: 24px;
+	margin-bottom: 15px;
+}
+
+b,
+strong {
+	font-weight: normal;
+	color: #1d1d1f;
+}
+
+
+a {
+	text-decoration: none;
+	color: var(--black-color);
+}
+
+a:hover {
+	text-decoration: none;
+	color: #1d1d1f;
+}
+
+
+/* Form */
+.form-control{
+
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+	outline: none !important;
+	box-shadow: none !important;
+}
+.form-group{
+	margin-bottom: 10px;
+}
+.form-group label{
+	margin-bottom: 5px;
+}
+
+select {
+	background-image: url(../images/drop-down.svg) !important;
+	background-size: 15px !important;
+	background-position: calc(100% - 15px) !important;
+	background-repeat: no-repeat !important;
+	padding-right: 15px !important;
+	-webkit-appearance: none;
+}
+
+.form-check-input:checked {
+	border-color: #1d1d1f;
+	background-color: #1d1d1f;
+}
+
+.form-check-input[type=checkbox] {
+	float: inherit;
+	border-radius: 0;
+	margin-right: 5px;
+}
+
+
+/* Selection */
+
+::-moz-selection {
+	color: var(--white-color);
+	background: var(--text-color);
+}
+
+::selection {
+	color: var(--white-color);
+	background: var(--text-color);
+}
+
+/* wrapper */
+.wrapper-main {
+	flex: 1 0 auto;
+	/* overflow: hidden; */
+}
+
+/*-------------------------------- Comman End css */
+
+
+
+
+
+
+/*form styles*/
+#msform {    
+    position: relative;
+    margin-top: 30px;
+	background: white;
+	box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.1);
+	border-radius: 15px;
+	padding: 30px;
+}
+
+#msform fieldset {    
+    border: 0 none;
+    box-sizing: border-box;
+    position: relative;
+	width: 100%;
+}
+
+/*Hide all except first fieldset*/
+#msform fieldset:not(:first-of-type) {
+    display: none;
+}
+
+/*inputs*/
+
+#msform input:focus, #msform textarea:focus {
+    -moz-box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    border: 1px solid rgb(126 189 194);
+    outline-width: 0;
+    transition: All 0.5s ease-in;
+    -webkit-transition: All 0.5s ease-in;
+    -moz-transition: All 0.5s ease-in;
+    -o-transition: All 0.5s ease-in;
+}
+
+/*buttons*/
+#msform .action-button {
+    width: 100px;
+    background: rgb(126 189 194);
+    font-weight: bold;
+    color: white;
+    border: 0 none;
+    border-radius: 25px;
+    cursor: pointer;
+    padding: 10px 5px;
+    margin: 10px 5px;
+}
+
+#msform .action-button:hover, #msform .action-button:focus {
+    box-shadow: 0 0 0 2px white, 0 0 0 3px rgb(126 189 194);
+}
+
+#msform .action-button-previous {
+    width: 100px;
+    background: #aCbEd0;
+    font-weight: bold;
+    color: white;
+    border: 0 none;
+    border-radius: 25px;
+    cursor: pointer;
+    padding: 10px 5px;
+    margin: 10px 5px;
+}
+
+#msform .action-button-previous:hover, #msform .action-button-previous:focus {
+    box-shadow: 0 0 0 2px white, 0 0 0 3px #aCbEd0;
+}
+
+/*headings*/
+.fs-title {
+    font-size: 18px;
+    text-transform: uppercase;
+    color: #2C3E50;
+    margin-bottom: 10px;
+    letter-spacing: 2px;
+    font-weight: bold;
+}
+
+.fs-subtitle {
+    font-weight: normal;
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+/*progressbar*/
+#progressbar {
+    margin-bottom: 0px;
+    overflow: hidden;
+    /*CSS counters to number the steps*/
+    counter-reset: step;
+	display: flex;
+	justify-content: space-between;
+	padding:20px;
+	border: 1px solid #f1f1f1;
+	border-radius: 10px;
+}
+
+#progressbar li {
+    list-style-type: none;
+    color: #666;
+	text-align: center;
+    text-transform: uppercase;
+    position: relative;
+    letter-spacing: 1px;
+	padding: 10px 15px;
+	border-radius: 8px;
+}
+#progressbar li.active{
+	background: #f1f1f1;
+}
+
+#progressbar li:before {
+    content: counter(step);
+    counter-increment: step;
+    width: 24px;
+    height: 24px;
+    line-height: 26px;
+    display: inline-block;
+    font-size: 12px;
+    color: #333;
+    background: #f1f1f1;
+    border-radius: 25px;
+    margin: 0 10px 0px auto;
+}
+
+/*progressbar connectors*/
+#progressbar li:after {
+    content: '';
+    width: 100%;
+    height: 2px;
+    background: white;
+    position: absolute;
+    left: -50%;
+    top: 9px;
+    z-index: -1; /*put it behind the numbers*/
+}
+
+#progressbar li:first-child:after {
+    /*connector not needed before the first step*/
+    content: none;
+}
+
+/*marking active/completed steps blue*/
+/*The number of the step and the connector before it = blue*/
+#progressbar li.active:before, #progressbar li.active:after {
+    background: #7ebdc2;
+    color: white;
+}
+
+
+.card{
+	border: 1px solid #f1f1f1;
+	margin-top: 20px;
+}
+.card-header{
+	background: #0F0F0F;
+	padding: 10px;
+	color: #fff;
+	border-color: #0F0F0F;
+	font-weight: 700;
+}
+
+
+.custom-check-input{	
+	padding: 0;
+}
+.custom-check-input .form-check-label{
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+}
+.custom-check-input .form-check-label img{
+	width: 100px;
+	margin: 0 auto;
+	margin-bottom: 10px;
+	border-radius: 5px;
+	text-align: center;
+}
+.custom-check-input .form-check-label span{
+	display: block;
+}
+
+.custom-check-input .form-check-input{
+	display: none;
+}
+.custom-check-input .form-check-input + label{
+	padding: 10px;
+	border-radius: 5px;
+	border: 1px solid #f1f1f1;
+}
+.custom-check-input .form-check-input:checked + label, .custom-check-input .form-check-input:hover + label{
+/*	background: rgba(126,189,194,.05);*/
+	border: 1px solid rgb(126,189,194);
+}
+
+.templates-card{
+	display: flex;
+	flex-wrap: wrap;
+	gap: 20px;
+}
+.templates-card .form-check{
+	width: calc(33.33% - 15px);
+	margin-right: 0;
+}
+.templates-card .form-check img{
+	width: 100%;
+	height: 100%;
+}
+.templates-card .custom-check-input .form-check-label img{
+	margin-bottom: 0;
+	width: 200px;
+	height: 200px;
+	object-fit: contain;
+}
+.card-type-boxs{
+	display: flex;
+	flex-wrap: wrap;
+}
+.card-type-boxs .form-check{
+	width: 22%;
+	margin: 5px;
+}
+.card-type-boxs .form-check label{
+	height: calc(100% - 0px) ;		
+}
+
+
+.priview-img{
+	width: 100%;
+	height: 300px;
+	padding: 30px;
+	border-radius: 10px;
+	border: 1px solid #f1f1f1;
+	margin-top: 20px;
+}
+.priview-img img{
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
+}
+
+.glass_previews img:not(.glass_preview) {
+    display: none;
+}
+
+.page-desc img {
+    width: 100%;
+    margin: 20px 0;
+}
+
+.submitted-alert.alert.alert-success {
+    margin-top: 20px;
+    display: none;
+}
+
+.submitted-alert.alert.alert-success svg{
+	width: 20px;
+    font-size: 1rem;
+    vertical-align: super;
+    text-align: center;
+}
+.alert-message.submitted-alert-message {
+    display: inline-block;
+    width: auto;
+    margin-left: 15px;
+}

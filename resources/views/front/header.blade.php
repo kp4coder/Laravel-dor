@@ -1,7 +1,7 @@
 
 	<!-- Header Start -->
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-		<div class="container">
+		<div class="container"> 
 			<a class="navbar-brand" href="/"><img src="{{ Voyager::image(setting('site.logo')) }}" alt=""></a>
 			<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
 				data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"

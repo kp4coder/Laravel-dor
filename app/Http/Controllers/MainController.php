@@ -86,16 +86,17 @@ class MainController extends Controller
         $book->email = $dor_request['email'];
         $book->zip = $dor_request['zip'];
         $book->comments = $dor_request['comments'];
+        $book->extra_option_id = $dor_request['image_priview'];
         $book->save(); // Assign other fields as needed
         $bookId = $book->id;
 
-        $book->data_style = DoorStyle::find($dor_request['style'])->first();
-        $book->data_door_type = DoorType::find($dor_request['door_type'])->first();
-        $book->data_template = DoorTemplate::find($dor_request['template'])->first();
-        $book->data_thickness = GlassThickness::find($dor_request['thickness'])->first();
-        $book->data_glass_type = GlassType::find($dor_request['glass_type'])->first();
-        $book->data_hardware = HardwareFinish::find($dor_request['hardware'])->first();
-        $book->data_handle = Handle::find($dor_request['handle'])->first();
+        $book->data_style = DoorStyle::find($dor_request['style']);
+        $book->data_door_type = DoorType::find($dor_request['door_type']);
+        $book->data_template = DoorTemplate::find($dor_request['template']);
+        $book->data_thickness = GlassThickness::find($dor_request['thickness']);
+        $book->data_glass_type = GlassType::find($dor_request['glass_type']);
+        $book->data_hardware = HardwareFinish::find($dor_request['hardware']);
+        $book->data_handle = Handle::find($dor_request['handle']);
 
         if (isset($dor_request['email']) && !empty($dor_request['email']) ) {
             
@@ -110,10 +111,12 @@ class MainController extends Controller
 
                 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
 
-            'X-Mailer: PHP/' . phpversion();
+            'X-Mailer: PHP/' . phpversion(); 
 
             mail($to, 'Door: Recieved a request', $message, $headers);
-            mail($admin, 'Door: Recieved a request', $message, $headers);
+            if( !empty($admin) ) {
+                mail($admin, 'Door: Recieved a request', $message, $headers);
+            }
 
             // Mail::send('email.reserve', ['reserveform' => $reserveform], 
             //     function ($message) use ($reserveform) {
@@ -139,5 +142,20 @@ class MainController extends Controller
         ]);
 
         // return redirect()->back()->with('success', 'Your shower details have been sent through to our team and a sales representative will be in touch to answer any questions you may have.');
+    }
+
+    public function bookmail(Request $request, $url) {
+        $book = BookDor::find($url);
+
+        $book->data_style = DoorStyle::find($book->style);
+        $book->data_door_type = DoorType::find($book->door_type);
+        $book->data_template = DoorTemplate::find($book->template);
+        $book->data_thickness = GlassThickness::find($book->thickness);
+        $book->data_glass_type = GlassType::find($book->glass_type);
+        $book->data_hardware = HardwareFinish::find($book->hardware);
+        $book->data_handle = Handle::find($book->handle);
+        $book->data_extra_option_img = isset($book->extra_option_id) ? ExtraOptionImage::find($book->extra_option_id) : '';
+
+        return view('front.email', compact('book'))->render();
     }
 }

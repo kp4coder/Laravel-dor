@@ -376,3 +376,6 @@ select {
     width: auto;
     margin-left: 15px;
 }
+.error {
+    color: red;
+}

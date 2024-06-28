@@ -1,7 +1,7 @@
 <table width="100%" cellpadding="0" cellspacing="0" style="margin: 0 auto; max-width: 600px; font-family: Arial, sans-serif;">
     <tr>
         <td align="center" bgcolor="#f8f8f8" style="padding: 40px 0;">
-            <img src="{{ url('/') }}/front/images/logo.png" alt="Logo" width="200" style="display: block;">
+            <img src="{{ Voyager::image(setting('site.logo')) }}" alt="Logo" width="200" style="display: block;">
         </td>
     </tr>
     <tr>
@@ -14,8 +14,12 @@
             <p>
                 <strong>Style</strong> {{$book->data_style->name}}
                 <br/><strong>Door Type</strong> {{$book->data_door_type->name}}
-                {{-- <br/><strong>Templates</strong> {{$book->data_template->name}} --}}
-                {{-- <br/><strong>Measurements</strong> {{$book->measurements}} --}}
+                <br/><strong>Templates</strong><br/><img src="{{ Voyager::image( $book->data_template->image ) }}" />
+                <br/><strong>Measurements</strong> 
+                    @php $char = 97; @endphp
+                    @foreach( $book->measurements as $measurement )
+                        <br/><strong style="margin-left: 15px">{{ chr($char++) }}</strong> {{ $measurement }}
+                    @endforeach
                 <br/><strong>Glass Thickness</strong> {{$book->data_thickness->name}}
                 <br/><strong>Glass Type</strong> {{$book->data_glass_type->name}}
                 <br/><strong>Hardware Finish</strong> {{$book->data_hardware->name}}
@@ -27,9 +31,11 @@
                 <br/><strong>Email</strong> {{$book->email}}
                 <br/><strong>Zip</strong> {{$book->zip}}
                 <br/><strong>Comments</strong> {{$book->comments}}
-                {{-- <br/><strong>Priview</strong> {{$book->name}} --}}
+                @if( isset($book->data_extra_option_img->image) )
+                    <br/><strong>Priview</strong><br/><img src="{{ Voyager::image( $book->data_extra_option_img->image ) }}" />
+                @endif
             </p>
-            <p>Kind regards,<br/>Together on 30</p>
+            <p>Kind regards,<br/>Dor</p>
         </td>
     </tr>
 </table>

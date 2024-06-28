@@ -24,5 +24,7 @@ Route::group(['prefix' => 'admin'], function () {
 });
 
 Route::get('/', [MainController::class, 'index']);
-Route::any('book-dor', [MainController::class, 'bookDor']);
-Route::any('{url}', [MainController::class, 'page']);
+// Route::any('book-dor', [MainController::class, 'bookDor']);
+// Route::any('bookmail/{bid}', [MainController::class, 'bookmail']);
+// Route::any('{url}', [MainController::class, 'page']);
+

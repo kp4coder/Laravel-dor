@@ -65,9 +65,10 @@ jQuery(document).ready(function() {
 				type: form.method,
 				data: $(form).serialize(),
 				success: function(response) {
-					if( response.status = 'success' ) {
+					if( response.status = 'success' ) { 
 						jQuery("#message").text(response.message);
 						jQuery(".submitted-alert.alert.alert-success").fadeIn();
+						jQuery('html, body').animate({ scrollTop: 0 }, 'slow');
 						form.reset();
 					}
 				}            
@@ -128,10 +129,14 @@ jQuery(document).on('click', '.gotostep2', function() {
         container.appendChild(inputContainer);
     }
 
-    // load image 
+    // load image on 2 step
+	let measurements_img = jQuery('input[name="template"]:checked').data('measurements_image');
+	jQuery(".messurements_preview").attr('src', measurements_img);
+
+	// load image on 3 step
 	let src = jQuery('input[name="template"]:checked').parent().find('img').attr('src');
-	jQuery(".messurements_preview").attr('src', src);
 	jQuery(".glass_preview").attr('src', src);
+
 });
 
 
@@ -177,6 +182,7 @@ function change_preview_img() {
 
 jQuery(document).on('click', '.gotostep4', function() {
 	let src = jQuery(".glass_previews .active").attr('src');
+	let img_id = jQuery(".glass_previews .active").data('id');
 	let style = jQuery('input[name="style"]:checked').data('name');
 	let hardware = jQuery('input[name="hardware"]:checked').data('name');
 	let handle = jQuery('input[name="handle"]:checked').data('name');
@@ -185,6 +191,7 @@ jQuery(document).on('click', '.gotostep4', function() {
 	let glass_type = jQuery('input[name="glass_type"]:checked').data('name');
 
 	jQuery(".dor_priview").attr('src', src);
+	jQuery("#image_priview").val(img_id);
 	jQuery('#style').text(style);
 	jQuery('#hardware').text(hardware);
 	jQuery('#handle').text(handle);

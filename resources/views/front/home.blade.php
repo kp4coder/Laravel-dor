@@ -40,7 +40,7 @@
 								<div class="form-check custom-check-input form-check-inline">
 									<input class="form-check-input" type="radio" name="style" id="{{ $dstyle->slug }}" value="{{ $dstyle->id }}" data-name="{{ $dstyle->name }}" data-value="{{ $dstyle->slug }}" {{ old('style') == $dstyle->name ? 'checked' : ($loop->first && !old('style') ? 'checked' : '') }}>
 									<label class="form-check-label" for="{{ $dstyle->slug }}">
-										<img src="{{ Voyager::image($dstyle->image) }}" alt="">
+										<img src="{{ Voyager::image($dstyle->image) }}" alt=""> 
 										<span>{{ $dstyle->name }}</span>
 									</label>
 							  	</div>
@@ -81,7 +81,7 @@
 						<div class="templates-card templates">
 							@foreach($doorTemplate as $dtemplate)
 							<div class="form-check custom-check-input form-check-inline {{ isset($dtemplate->doorStyle->slug) ? $dtemplate->doorStyle->slug : '' }} {{ isset($dtemplate->doorType->slug) ? $dtemplate->doorType->slug : '' }} ">
-								<input class="form-check-input" type="radio" name="template" id="dt_{{$dtemplate->id}}" value="{{$dtemplate->id}}" data-measurements_field="{{$dtemplate->measurements_field}}" {{ $loop->first ? 'checked' : '' }}>
+								<input class="form-check-input" type="radio" name="template" id="dt_{{$dtemplate->id}}" value="{{$dtemplate->id}}" data-measurements_field="{{$dtemplate->measurements_field}}" data-measurements_image="{{ Voyager::image($dtemplate->measurements_image) }}" {{ $loop->first ? 'checked' : '' }}>
 								<label class="form-check-label" for="dt_{{$dtemplate->id}}">
 									<img src="{{ Voyager::image($dtemplate->image) }}" alt="">
 								</label>
